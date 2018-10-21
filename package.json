@@ -1,13 +1,34 @@
 {
   "name": "hello-vue-components",
-  "version": "0.1.0",
-  "private": true,
+  "description": "A simple, example component library using Vue CLI 3.",
+  "version": "0.0.0",
+  "author": {
+    "name": "Chris Fritz",
+    "email": "chrisvfritz@gmail.com"
+  },
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "dist/hello-vue-components.common.js",
+  "homepage": "https://github.com/chrisvfritz/hello-vue-components#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisvfritz/hello-vue-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisvfritz/hello-vue-components/issues"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "node bin/build-lib.js",
+    "lint": "vue-cli-service lint",
+    "prepublishOnly": "npm run lint && npm run build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^2.5.17"
   },
   "devDependencies": {
@@ -34,10 +55,5 @@
     "plugins": {
       "autoprefixer": {}
     }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  }
 }
