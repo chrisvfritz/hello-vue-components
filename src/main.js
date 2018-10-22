@@ -1,5 +1,8 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './App'
+import HelloVueComponents from './lib'
+
+Vue.use(HelloVueComponents)
 
 Vue.config.productionTip = false
 
