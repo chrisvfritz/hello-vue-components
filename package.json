@@ -1,7 +1,7 @@
 {
   "name": "hello-vue-components",
   "description": "A simple, example component library using Vue CLI 3.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": {
     "name": "Chris Fritz",
     "email": "chrisvfritz@gmail.com"
