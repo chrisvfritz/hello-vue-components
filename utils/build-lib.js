@@ -44,6 +44,13 @@ ncp(
     if (error) console.error(error)
   }
 )
+const nodeModulesDir = path.resolve(
+  __dirname,
+  '../node_modules/hello-vue-components'
+)
+if (!fs.existsSync(nodeModulesDir)) {
+  fs.mkdirSync(nodeModulesDir)
+}
 ncp(
   path.resolve(__dirname, '../dist'),
   path.resolve(__dirname, '../node_modules/hello-vue-components/dist'),
