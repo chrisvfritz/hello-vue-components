@@ -98,7 +98,7 @@ export default {
 }
 ```
 
-Or, if you only want to use a small subset of components, import individually bundled components from the `dist` directory to reduce the size of your application:
+Or, if you only want to use a small subset of components, import individually bundled components from the `src` directory to reduce the size of your application:
 
 ```js
 import HelloA from 'hello-vue-components/src/HelloA'
