@@ -1,3 +1,12 @@
 module.exports = {
-  presets: ['@vue/app'],
+  presets: [
+    [
+      '@babel/env',
+      {
+        useBuiltIns: 'usage',
+        loose: process.env.NODE_ENV === 'production'
+      }
+    ]
+  ],
+  plugins: ['transform-vue-jsx']
 }
