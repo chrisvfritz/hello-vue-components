@@ -12,7 +12,8 @@ if (window.__e2e_lib) {
   Vue.component('HelloA', require('hello-vue-components/src/HelloA').default)
   Vue.component('HelloB', require('hello-vue-components/src/HelloB').default)
 } else {
-  Vue.use(require('../src').default)
+  // Install the plugin directly from src in development
+  Vue.use(require('../../../../src').default)
 }
 
 Vue.config.productionTip = false

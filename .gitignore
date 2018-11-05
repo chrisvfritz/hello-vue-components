@@ -7,6 +7,7 @@ node_modules/
 
 # Dev/Build Artifacts
 /dist/
+/tests/e2e/demo/public/browser/dist/
 /tests/e2e/videos/
 /tests/e2e/screenshots/
 /tests/unit/coverage/

@@ -9,8 +9,16 @@ module.exports = {
     config.module
       .rule('vue')
       .use('global-vue-loader')
-      .loader(path.resolve(__dirname, './utils/global-vue-loader'))
+      .loader(path.resolve(__dirname, './build-utils/global-vue-loader'))
       .before('vue-loader')
+  },
+  pages: {
+    index: {
+      // entry for the page
+      entry: 'tests/e2e/demo/src/main.js',
+      // the source template
+      template: 'tests/e2e/demo/public/index.html'
+    }
   },
   css: {
     // Optionally set this to true if you want CSS

@@ -20,12 +20,13 @@
     "url": "https://github.com/chrisvfritz/hello-vue-components/issues"
   },
   "scripts": {
-    "dev": "vue-cli-service serve demo/main.js",
-    "build": "node utils/build-lib.js",
+    "dev": "node build-utils/update-index-file.js && vue-cli-service serve",
+    "build": "node build-utils/build-lib.js",
     "lint":
-      "eslint --ext .js,.vue --fix . && stylelint --fix \"{src,demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
+      "node build-utils/update-index-file.js && eslint --ext .js,.vue --fix . && stylelint --fix \"{src,demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
     "unit": "vue-cli-service test:unit",
-    "e2e": "npm run build && vue-cli-service test:e2e --headless",
+    "e2e":
+      "cross-env E2E=true npm run build && vue-cli-service test:e2e --headless",
     "test": "npm run unit && npm run e2e",
     "prepublishOnly": "npm run lint && npm run test"
   },
