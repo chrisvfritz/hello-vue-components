@@ -1,4 +1,4 @@
-# hello-vue-components
+# Hello Vue Components
 
 > An example component library built with Vue CLI 3.
 
