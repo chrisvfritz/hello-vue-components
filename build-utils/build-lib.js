@@ -35,7 +35,7 @@ for (const componentName of componentNames) {
   renameIndex(`dist/${componentName}`)
 }
 
-if (process.env.E2E) {
+if (process.env.VUE_APP_E2E) {
   ncp(
     path.resolve(__dirname, '../dist'),
     path.resolve(__dirname, '../tests/e2e/demo/public/browser/dist'),

@@ -23,10 +23,10 @@
     "dev": "node build-utils/update-index-file.js && vue-cli-service serve",
     "build": "node build-utils/build-lib.js",
     "lint":
-      "node build-utils/update-index-file.js && eslint --ext .js,.vue --fix . && stylelint --fix \"{src,demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
+      "eslint --ext .js,.vue --fix . && stylelint --fix \"{src,tests/e2e/demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
     "unit": "vue-cli-service test:unit",
     "e2e":
-      "cross-env E2E=true npm run build && vue-cli-service test:e2e --headless",
+      "cross-env VUE_APP_E2E=true npm run build && vue-cli-service test:e2e --headless",
     "test": "npm run unit && npm run e2e",
     "prepublishOnly": "npm run lint && npm run test"
   },
@@ -61,14 +61,196 @@
     "stylelint-config-prettier": "^4.0.0",
     "stylelint-config-recess-order": "^2.0.0",
     "stylelint-config-standard": "^18.2.0",
-    "val-loader": "^1.1.1",
     "vue": "^2.5.17",
     "vue-template-compiler": "^2.5.17"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "useBuiltIns": "usage"
+        }
+      ]
+    ],
+    "plugins": ["transform-vue-jsx"]
+  },
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "eslintConfig": {
+    "root": true,
+    "parserOptions": {
+      "sourceType": "script"
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "standard",
+      "prettier",
+      "prettier/standard"
+    ],
+    "rules": {
+      "no-debugger": "warn",
+      "no-console": [
+        "warn",
+        {
+          "allow": ["warn", "error"]
+        }
+      ],
+      "vue/component-name-in-template-casing": [
+        "error",
+        "PascalCase",
+        {
+          "ignores": [
+            "component",
+            "template",
+            "transition",
+            "transition-group",
+            "keep-alive",
+            "slot",
+            "router-view",
+            "router-link"
+          ]
+        }
+      ],
+      "vue/multiline-html-element-content-newline": "error",
+      "vue/singleline-html-element-content-newline": "error",
+      "vue/no-spaces-around-equal-signs-in-attribute": "error",
+      "vue/script-indent": [
+        "error",
+        2,
+        {
+          "baseIndent": 0
+        }
+      ]
+    },
+    "overrides": [
+      {
+        "files": ["src/**/*", "demo/**/*", "tests/unit/**/*"],
+        "parserOptions": {
+          "parser": "babel-eslint",
+          "sourceType": "module"
+        },
+        "env": {
+          "browser": true
+        }
+      },
+      {
+        "files": ["tests/e2e/**/*"],
+        "parserOptions": {
+          "parser": "babel-eslint",
+          "sourceType": "module"
+        },
+        "plugins": ["cypress"],
+        "env": {
+          "cypress/globals": true
+        }
+      },
+      {
+        "files": ["**/*.unit.js"],
+        "parserOptions": {
+          "parser": "babel-eslint",
+          "sourceType": "module"
+        },
+        "env": {
+          "jest": true
+        },
+        "globals": {
+          "mount": false,
+          "shallowMount": false,
+          "createComponentMocks": false
+        }
+      }
+    ]
+  },
+  "eslintIgnore": [
+    "/dist/",
+    "/tests/e2e/demo/public/browser/dist/",
+    "/tests/unit/coverage/"
+  ],
+  "jest": {
+    "setupFiles": ["<rootDir>/tests/unit/setup"],
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/unit/matchers",
+    "testMatch": ["**/(*.)unit.js"],
+    "moduleFileExtensions": ["js", "json", "vue"],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpe?g|png|gif|webp|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)$":
+        "<rootDir>/tests/unit/fixtures/empty-string.js"
+    },
+    "snapshotSerializers": ["jest-serializer-vue"],
+    "coverageDirectory": "<rootDir>/tests/unit/coverage",
+    "collectCoverageFrom": [
+      "src/**/*.{js,vue}",
+      "!**/node_modules/**",
+      "!src/index.js"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write --loglevel warn",
+      "git add",
+      "npm run unit -- --bail --findRelatedTests"
+    ],
+    "{*.json,*.code-snippets,.*rc}": [
+      "prettier --write --loglevel warn --parser json",
+      "git add"
+    ],
+    "*.vue": [
+      "eslint --fix",
+      "stylelint --fix",
+      "prettier --write --loglevel warn",
+      "git add",
+      "npm run unit -- --bail --findRelatedTests"
+    ],
+    "*.css": ["stylelint --fix", "prettier --write --loglevel warn", "git add"],
+    "*.md": ["markdownlint", "prettier --write --loglevel warn", "git add"],
+    "*.{png,jpeg,jpg,gif,svg}": ["imagemin-lint-staged", "git add"]
   },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid",
+    "proseWrap": "never"
+  },
+  "prettierIgnore": [
+    "/node_modules/**",
+    "/dist/**",
+    "/tests/e2e/demo/public/browser/dist/**",
+    "/tests/unit/coverage/**"
+  ],
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-recess-order",
+      "stylelint-config-prettier",
+      "stylelint-config-css-modules"
+    ],
+    "rules": {
+      "string-no-newline": null,
+      "selector-class-pattern":
+        "^[a-z][a-zA-Z]*(-(enter|leave)(-(active|to))?)?$",
+      "selector-id-pattern": "^[a-z][a-zA-Z]*$",
+      "selector-max-universal": 1,
+      "selector-max-type": [
+        0,
+        {
+          "ignore": ["child", "descendant", "compounded"]
+        }
+      ]
+    }
+  }
 }

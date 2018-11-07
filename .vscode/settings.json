@@ -19,7 +19,9 @@
     "**/*.log": true,
     "**/*.log*": true,
     "**/dist": true,
-    "**/coverage": true
+    "tests/unit/coverage": true,
+    "tests/e2e/videos": true,
+    "tests/e2e/screenshots": true
   },
   "files.associations": {
     ".markdownlintrc": "jsonc"
