@@ -4,7 +4,7 @@ test('exports a valid component', () => {
   expect(HelloB).toBeAComponent()
 })
 
-test('renders then text "HelloB"', () => {
+test('renders the text "HelloB"', () => {
   const { element } = shallowMount(HelloB)
   expect(element.textContent.trim()).toBe('HelloB')
 })
