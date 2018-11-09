@@ -77,12 +77,19 @@ if (process.env.VUE_APP_E2E) {
 }
 
 function renameIndex(directory) {
-  fs.renameSync(
-    path.resolve(__dirname, `../${directory}/index.common.js`),
-    path.resolve(__dirname, `../${directory}/index.js`)
+  const oldIndexPath = path.resolve(
+    __dirname,
+    `../${directory}/index.common.js`
   )
-  fs.renameSync(
-    path.resolve(__dirname, `../${directory}/index.common.js.map`),
-    path.resolve(__dirname, `../${directory}/index.js.map`)
+  const newIndexPath = path.resolve(__dirname, `../${directory}/index.js`)
+  const oldMapPath = oldIndexPath + '.map'
+  const newMapPath = newIndexPath + '.map'
+  fs.renameSync(oldIndexPath, newIndexPath)
+  fs.renameSync(oldMapPath, newMapPath)
+  fs.writeFileSync(
+    newIndexPath,
+    fs
+      .readFileSync(newIndexPath, { encoding: 'utf8' })
+      .replace(path.basename(oldMapPath), path.basename(newMapPath))
   )
 }
