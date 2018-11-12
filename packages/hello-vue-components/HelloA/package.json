@@ -1,0 +1,25 @@
+{
+  "name": "hello-vue-components.HelloA",
+  "description": "A component that says \"HelloA\" with orange text.",
+  "author": {
+    "name": "Chris Fritz",
+    "email": "chrisvfritz@gmail.com",
+    "github": "chrisvfritz"
+  },
+  "license": "MIT",
+  "homepage": "https://www.npmjs.com/package/hello-vue-components.HelloA",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisvfritz/hello-vue-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisvfritz/hello-vue-components/issues"
+  },
+  "module": "index.js",
+  "main": "cjs/index.js",
+  "unpkg": "umd/index.min.js",
+  "jsdelivr": "umd/index.min.js",
+  "peerDependencies": {
+    "vue": ">=2.0.0"
+  }
+}

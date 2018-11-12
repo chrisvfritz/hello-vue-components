@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>components</title>
+  </head>
+  <body>
+    <div id="app">
+      <hello-a></hello-a>
+      <hello-b></hello-b>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="packages/hello-vue-components.HelloA/umd/index.min.js"></script>
+    <script src="packages/hello-vue-components.HelloB/umd/index.min.js"></script>
+    <script>
+      new Vue({ el: '#app' })
+    </script>
+  </body>
+</html>
