@@ -55,6 +55,10 @@
   "emmet.includeLanguages": {
     "vue-html": "html"
   },
+  "vetur.grammar.customBlocks": {
+    "example": "html",
+    "meta": "json"
+  },
 
   // ===
   // JS(ON)

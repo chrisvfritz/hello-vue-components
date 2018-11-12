@@ -10,6 +10,7 @@ node_modules/
 /tests/e2e/demo/public/browser/dist/
 /tests/e2e/videos/
 /tests/e2e/screenshots/
+/tests/e2e/fixtures/public/packages/
 /tests/unit/coverage/
 jsconfig.json
 
