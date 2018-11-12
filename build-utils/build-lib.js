@@ -61,7 +61,10 @@ function renameIndex(componentName) {
     }
   ]
 
-  const packageName = _.compact([libConfig.name, componentName]).join('.')
+  const packageName = _.compact([
+    libConfig.name,
+    _.kebabCase(componentName)
+  ]).join('.')
   const destPackageFolder = path.resolve(
     __dirname,
     `../packages/${packageName}`
