@@ -1,5 +1,5 @@
 {
-  "name": "hello-vue-components.HelloA",
+  "name": "hello-vue-components.hello-a",
   "description": "A component that says \"HelloA\" with orange text.",
   "author": {
     "name": "Chris Fritz",
@@ -7,7 +7,7 @@
     "github": "chrisvfritz"
   },
   "license": "MIT",
-  "homepage": "https://www.npmjs.com/package/hello-vue-components.HelloA",
+  "homepage": "https://www.npmjs.com/package/hello-vue-components.hello-a",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chrisvfritz/hello-vue-components.git"

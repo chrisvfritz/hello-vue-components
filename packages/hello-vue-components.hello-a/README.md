@@ -1,4 +1,4 @@
-# hello-vue-components.HelloA
+# hello-vue-components.hello-a
 
 > A component that says "HelloA" with orange text.
 
@@ -14,7 +14,7 @@ Drop the component in with a `<script>` tag alongside Vue:
 </div>
 
 <script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/hello-vue-components.HelloA"></script>
+<script src="https://unpkg.com/hello-vue-components.hello-a"></script>
 <script>
 new Vue({ el: '#app' })
 </script>
@@ -25,19 +25,19 @@ new Vue({ el: '#app' })
 Install the component with NPM:
 
 ```bash
-npm install hello-vue-components.HelloA
+npm install hello-vue-components.hello-a
 ```
 
 Then import the component:
 
 ```js
-import HelloA from 'hello-vue-components.HelloA'
+import HelloA from 'hello-vue-components.hello-a'
 ```
 
 And either globally register it for use in all components:
 
 ```js
-Vue.component(HelloA, 'hello-vue-components.HelloA')
+Vue.component(HelloA, 'hello-vue-components.hello-a')
 ```
 
 or locally register it for use in an individual component:
