@@ -4,14 +4,11 @@
   "scripts": {
     "dev": "node build-utils/update-index-file.js && vue-cli-service serve",
     "build": "node build-utils/build-lib.js",
-    "lint":
-      "eslint --ext .js,.vue --fix . && stylelint --fix \"{src,tests/e2e/demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
+    "lint": "eslint --ext .js,.vue --fix . && stylelint --fix \"{src,tests/e2e/demo}/**/*.{css,vue}\" && markdownlint docs/*.md *.md && prettier --write --loglevel warn \"**/*.{js,json,css,vue,md}\"",
     "unit": "vue-cli-service test:unit",
-    "e2e":
-      "cross-env VUE_APP_E2E=true npm run build && vue-cli-service test:e2e",
+    "e2e": "cross-env VUE_APP_E2E=true npm run build && vue-cli-service test:e2e",
     "test": "npm run unit && npm run e2e",
-    "prepublishOnly":
-      "npm run lint && npm run test && node build-utils/build-lib.js"
+    "prepublishOnly": "npm run lint && npm run test && node build-utils/build-lib.js"
   },
   "gitHooks": {
     "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
@@ -27,15 +24,15 @@
     "@vue/component-compiler-utils": "^2.3.0",
     "@vue/eslint-config-prettier": "^4.0.0",
     "@vue/eslint-config-standard": "^4.0.0",
-    "@vue/test-utils": "1.0.0-beta.25",
+    "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.4",
     "cross-env": "^5.2.0",
-    "eslint-plugin-vue": "5.0.0-beta.3",
+    "eslint-plugin-vue": "^5.2.2",
     "fs-extra": "^7.0.1",
-    "globby": "^8.0.1",
-    "imagemin-lint-staged": "^0.3.0",
+    "globby": "^9.0.0",
+    "imagemin-lint-staged": "^0.4.0",
     "lerna": "^3.4.3",
     "lint-staged": "^8.0.4",
     "lodash": "^4.17.11",
@@ -58,8 +55,7 @@
           "useBuiltIns": "usage"
         }
       ]
-    ],
-    "plugins": ["transform-vue-jsx"]
+    ]
   },
   "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "eslintConfig": {
@@ -81,22 +77,7 @@
           "allow": ["warn", "error"]
         }
       ],
-      "vue/component-name-in-template-casing": [
-        "error",
-        "PascalCase",
-        {
-          "ignores": [
-            "component",
-            "template",
-            "transition",
-            "transition-group",
-            "keep-alive",
-            "slot",
-            "router-view",
-            "router-link"
-          ]
-        }
-      ],
+      "vue/component-name-in-template-casing": ["error", "PascalCase"],
       "vue/multiline-html-element-content-newline": "error",
       "vue/singleline-html-element-content-newline": "error",
       "vue/no-spaces-around-equal-signs-in-attribute": "error",
@@ -164,8 +145,7 @@
       "^.+\\.js$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(jpe?g|png|gif|webp|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)$":
-        "<rootDir>/tests/unit/fixtures/empty-string.js"
+      "\\.(jpe?g|png|gif|webp|svg|mp4|webm|ogg|mp3|wav|flac|aac|woff2?|eot|ttf|otf)$": "<rootDir>/tests/unit/fixtures/empty-string.js"
     },
     "snapshotSerializers": ["jest-serializer-vue"],
     "coverageDirectory": "<rootDir>/tests/unit/coverage",
@@ -223,8 +203,7 @@
     ],
     "rules": {
       "string-no-newline": null,
-      "selector-class-pattern":
-        "^[a-z][a-zA-Z]*(-(enter|leave)(-(active|to))?)?$",
+      "selector-class-pattern": "^[a-z][a-zA-Z]*(-(enter|leave)(-(active|to))?)?$",
       "selector-id-pattern": "^[a-z][a-zA-Z]*$",
       "selector-max-universal": 1,
       "selector-max-type": [

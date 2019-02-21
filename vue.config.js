@@ -1,4 +1,5 @@
 const path = require('path')
+const { IgnorePlugin } = require('webpack')
 
 module.exports = {
   chainWebpack: config => {
@@ -28,6 +29,12 @@ module.exports = {
       .resourceQuery(/blockType=example/)
       .use('null-loader')
       .loader('null-loader')
+
+    if (!process.env.VUE_APP_E2E) {
+      config
+        .plugin('ignore-e2e-packages')
+        .use(IgnorePlugin, [{ resourceRegExp: /^hello-vue-components/ }])
+    }
   },
   devServer: {
     contentBase: path.join(__dirname, 'tests/e2e/fixtures/public')
