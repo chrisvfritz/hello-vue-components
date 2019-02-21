@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const fs = require('fs-extra')
 const path = require('path')
 const { execSync } = require('child_process')
@@ -5,7 +6,10 @@ const libConfig = require('../lib')
 const _ = require('lodash')
 const parseComponent = require('@vue/component-compiler-utils').parse
 
+console.info("🚀 Let's build this thing!")
+
 // Update the index file
+console.info('📝 Updating index file')
 require('./update-index-file')
 
 // Get the names of all components in the src directory
@@ -17,6 +21,7 @@ const vueCliServicePath = getPath('../node_modules/.bin/vue-cli-service')
 fs.emptyDirSync(getPath('../packages'))
 
 // Build the main lib, with all components packaged into a plugin
+console.info('🏗 Building main library')
 execSync(
   `${vueCliServicePath} build src/index.js --target lib --name index --dest dist/`
 )
@@ -27,6 +32,7 @@ renameIndex()
 // For each component in the src directory...
 for (const componentName of componentNames) {
   // Build the component individually
+  console.info(`🏗 Building ${componentName}`)
   execSync(
     `${vueCliServicePath} build src/${componentName}.vue --target lib --name index --dest dist/${componentName}/`
   )
@@ -137,15 +143,17 @@ export * from './src${componentName ? '/' + componentName + '.vue' : ''}'
     description,
     example
   }
-
+  console.info(`📝 Writing package.json for ${packageConfig.moduleName}`)
   fs.writeFileSync(
     path.resolve(destPackageFolder, 'package.json'),
     generatePackageJson(packageConfig)
   )
+  console.info(`🤓 Writing readme file for ${packageConfig.moduleName}`)
   fs.writeFileSync(
     path.resolve(destPackageFolder, 'README.md'),
     generateReadme(packageConfig)
   )
+  console.info(`☝️ Adding license for ${packageConfig.moduleName}`)
   fs.writeFileSync(
     path.resolve(destPackageFolder, 'LICENSE'),
     `\
