@@ -67,7 +67,11 @@ export default {
 
 If you only want to use a small subset of components, only import individually packaged components to reduce the size of your application:
 
+```bash
+npm install hello-vue-components.hello-a hello-vue-components.hello-b
+```
+
 ```js
-import HelloA from 'hello-vue-components.HelloA'
-import HelloB from 'hello-vue-components.HelloB'
+import HelloA from 'hello-vue-components.hello-a'
+import HelloB from 'hello-vue-components.hello-b'
 ```
