@@ -118,6 +118,9 @@ function renameIndex(componentName) {
     path.resolve(destPackageFolder, 'index.js'),
     `\
 export * from './src${componentName ? '/' + componentName + '.vue' : ''}'
+export { default } from './src${
+      componentName ? '/' + componentName + '.vue' : ''
+    }'
 `
   )
 
@@ -195,6 +198,7 @@ THE SOFTWARE.
       path.resolve(componentPackageFolder, 'index.js'),
       `\
 export * from '${path.join('../src', componentName || '')}'
+export { default } from '${path.join('../src', componentName || '')}'
 `
     )
   }
