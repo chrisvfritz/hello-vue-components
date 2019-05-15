@@ -16,7 +16,9 @@ require('./update-index-file')
 const componentNames = require('./component-names')
 
 // Get the binary for vue-cli-service
-const vueCliServicePath = getPath('../node_modules/.bin/vue-cli-service')
+const vueCliServicePath = getPath(
+  '../node_modules/.bin/vue-cli-service'
+).replace(/ /g, '\\ ')
 
 fs.emptyDirSync(getPath('../packages'))
 
